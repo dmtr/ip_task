@@ -36,6 +36,10 @@ def create_app():
     logging.config.dictConfig(app.config.get('LOGGING', {}))
 
     app.db_connection = psycopg2.connect(host=config.DB_HOST, user=config.DB_USER, database=config.DB_NAME)
+
+    from ip_task import views
+    app.add_url_rule('/users_relation', 'users_relation', views.get_users_relation, methods=['GET'])
+
     return app
 
 
