@@ -16,3 +16,10 @@ def init(connection):
         logger.exception('Error while init db %s', e)
     finally:
         c.close()
+
+
+def check_users(user1, user2, connection):
+    c = connection.cursor()
+    c.execute("SELECT count(*) FROM user_ip WHERE user1 = (%s) AND user2 = (%s)", (user1, user2))
+    r = c.fetchone()
+    return r[0]
