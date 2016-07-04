@@ -7,7 +7,7 @@ services:
       environment:
         - PYTHONPATH=/app/
         - SECRET_KEY=my_super_secret_key
-      command: python /app/ip_task/app.py --config=/app/ip_task/etc/config 
+      command: gunicorn ip_task.app:app -c /app/ip_task/etc/gunicorn.conf.py 
       volumes:
         - ./web/ip_task/:/app/ip_task
       depends_on:
