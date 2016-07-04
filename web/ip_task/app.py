@@ -52,3 +52,11 @@ def initdb():
     click.echo('Init the db')
     db.init(app.db_connection)
     click.echo('done')
+
+
+@app.cli.command()
+def refresh_view():
+    """Refresh materialized view. This command could be run by cron."""
+    click.echo('Refresh view')
+    db.refresh_view(app.db_connection)
+    click.echo('done')

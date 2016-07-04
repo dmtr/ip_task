@@ -18,6 +18,11 @@ def init(connection):
         c.close()
 
 
+def refresh_view(connection):
+    c = connection.cursor()
+    c.execute(queries.REFRESH_VIEW)
+
+
 def check_users(user1, user2, connection):
     c = connection.cursor()
     c.execute("SELECT count(*) FROM user_ip WHERE user1 = (%s) AND user2 = (%s)", (user1, user2))
