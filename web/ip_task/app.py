@@ -3,7 +3,9 @@ import logging.config
 import os
 import sys
 
+import click
 import psycopg2
+import ip_task.db as db
 
 from flask import Flask
 
@@ -20,6 +22,7 @@ def get_config():
 
 
 def create_app():
+    """Create Flask application"""
     app = Flask(__name__)
 
     config = get_config()
@@ -37,3 +40,11 @@ def create_app():
 
 
 app = create_app()
+
+
+@app.cli.command()
+def initdb():
+    """Initialize the database."""
+    click.echo('Init the db')
+    db.init(app.db_connection)
+    click.echo('done')

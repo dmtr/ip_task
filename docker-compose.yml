@@ -6,6 +6,7 @@ services:
         - "5000"
       environment:
         - PYTHONPATH=/app/
+        - FLASK_APP=ip_task/app.py 
         - SECRET_KEY=my_super_secret_key
       command: gunicorn ip_task.app:app -c /app/ip_task/etc/gunicorn.conf.py 
       volumes:

@@ -1,3 +1,11 @@
+CREATE_TABLE = """CREATE TABLE iptable(
+    user_id INTEGER,
+    ip_address INET,
+    date TIMESTAMP,
+    CONSTRAINT user_id_ip_address UNIQUE(user_id, ip_address)
+)
+"""
+
 CREATE_FUNC = """CREATE OR REPLACE FUNCTION filter_ip_array(inet[])
 RETURNS inet[]
 AS
