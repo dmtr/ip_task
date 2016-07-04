@@ -9,6 +9,8 @@ logger = logging.getLogger(__name__)
 
 
 def get_users_relation():
+    """ Returns code 200 if users are related"""
+
     user1 = request.args.get('user1', None)
     user2 = request.args.get('user2', None)
     if not (user1 and user2):
