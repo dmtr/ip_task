@@ -1,0 +1,28 @@
+version: '2'
+services:
+    web:
+      build: ./web/
+      expose:
+        - "5000"
+      environment:
+        - PYTHONPATH=/app/
+        - SECRET_KEY=my_super_secret_key
+      command: python /app/ip_task/app.py --config=/app/ip_task/etc/config 
+      volumes:
+        - ./web/ip_task/:/app/ip_task
+      depends_on:
+        - db
+
+    nginx:
+      build: ./nginx/
+      ports:
+        - "80:80"
+      volumes_from:
+        - web
+      links:
+        - web:web
+
+    db:
+        build: ./postgresql/
+        ports:
+         - "5432:5432"
